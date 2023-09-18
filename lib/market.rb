@@ -31,5 +31,32 @@ class Market
     @vendors.map{|vendor| vendor.inventory.keys.map{|item| item.name}}.flatten.uniq.sort
   end
 
-  
+  def total_inventory
+    total_inventory_hash = {}
+
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        if total_inventory_hash[item]
+          total_inventory_hash[item][:quantity] += quantity
+          total_inventory_hash[item][:vendors] << vendor
+        else
+          total_inventory_hash[item] = {:quantity => quantity, :vendors => [vendor]}
+        end
+      end
+    end
+    total_inventory_hash
+  end
+
+  def overstocked_items
+    over_stocked = []
+    total_inventory.each do |item, info|
+      quantity = info[:quantity]
+      vendors = info[:vendors]
+
+      if vendors.length > 1 && quantity > 50
+        over_stocked << item
+      end
+    end
+    over_stocked
+  end
 end

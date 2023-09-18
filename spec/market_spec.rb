@@ -73,4 +73,24 @@ RSpec.describe Market do
       expect(@market.sorted_item_list).to eq(expected_item_names)  
     end
   end
+
+  describe "#total_inventory" do
+    it 'returns the total inventory of all vendors' do
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    expect(@market.total_inventory).to be_a Hash
+    expect(@market.total_inventory).to include(@item1)
+    end
+  end
+
+  describe "#overstocked_items" do
+    it 'returns a list of items that are overstocked' do
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+
+    expect(@market.overstocked_items).to include(@item1)  
+    end
+  end
 end
