@@ -15,4 +15,14 @@ class Vendor
         @inventory[item] = amount
     end
   end
+
+  def potential_revenue
+    revenue = 0
+
+    inventory.each do |item, quantity|
+      item_price = item.price.delete("$").to_f
+      revenue += item_price * quantity
+    end
+    revenue
+  end
 end

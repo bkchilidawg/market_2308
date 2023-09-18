@@ -61,4 +61,16 @@ RSpec.describe Market do
       expect(@market.vendors_that_sell(@item4).length).to eq 1 
     end
   end
+
+  describe "#sorted_item_list" do
+    it 'returns a list of items sorted alphabetically' do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)
+      @market.add_vendor(@vendor3)
+
+      expected_item_names = [@item1.name, @item2.name, @item3.name, @item4.name].sort
+
+      expect(@market.sorted_item_list).to eq(expected_item_names)  
+    end
+  end
 end

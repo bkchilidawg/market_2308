@@ -27,7 +27,9 @@ class Market
     sells_item
   end
 
-  def potential_revenue
-    
+  def sorted_item_list
+    @vendors.map{|vendor| vendor.inventory.keys.map{|item| item.name}}.flatten.uniq.sort
   end
+
+  
 end
