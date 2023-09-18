@@ -12,11 +12,11 @@ RSpec.describe Market do
     @vendor1 = Vendor.new("Rocky Mountain Fresh")
     @vendor2 = Vendor.new("Ba-Nom-a-Nom")  
     @vendor3 = Vendor.new("Palisade Peach Shack")
-    @vendor1.stock(item1, 35) 
-    @vendor1.stock(item2, 7)    
-    @vendor2.stock(item4, 50) 
-    @vendor2.stock(item3, 25)
-    @vendor3.stock(item1, 65)  
+    @vendor1.stock(@item1, 35) 
+    @vendor1.stock(@item2, 7)    
+    @vendor2.stock(@item4, 50) 
+    @vendor2.stock(@item3, 25)
+    @vendor3.stock(@item1, 65)  
     @market = Market.new("South Pearl Street Farmers Market")
   end
 
@@ -58,7 +58,7 @@ RSpec.describe Market do
       @market.add_vendor(@vendor3)
 
       expect(@market.vendors_that_sell(@item1).length).to eq 2
-      expect(@market.vendors_that_sell(@item4)).to eq 1 
+      expect(@market.vendors_that_sell(@item4).length).to eq 1 
     end
   end
 end
