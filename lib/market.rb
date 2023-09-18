@@ -40,7 +40,7 @@ class Market
           total_inventory_hash[item][:quantity] += quantity
           total_inventory_hash[item][:vendors] << vendor
         else
-          total_inventory_hash[item] = {:quantity => quantity, :vendors => [vendor]}
+          total_inventory_hash[item] = {quantity: quantity, vendors: [vendor]}
         end
       end
     end
